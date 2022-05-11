@@ -22,7 +22,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "lcd.h"
+#include <stdio.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -40,7 +41,7 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
-
+char lcd_buf_0[20],lcd_buf_1[20];
 /* USER CODE BEGIN PV */
 
 /* USER CODE END PV */
@@ -80,7 +81,10 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
-
+  lcd_init(LCD_DISP_ON);
+  lcd_clear();
+  lcd_gotoxy(0,0);
+  lcd_puts("Waiting");
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
@@ -96,6 +100,13 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+    sprintf(lcd_buf_0,"First Line");
+    sprintf(lcd_buf_1,"Second line");
+    lcd_clear();
+    lcd_puts(lcd_buf_0);
+    lcd_gotoxy(0,1);
+    lcd_puts(lcd_buf_1);
+    for(;;);
   }
   /* USER CODE END 3 */
 }
